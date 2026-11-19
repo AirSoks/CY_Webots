@@ -1,0 +1,51 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+
+WorldInfo {
+  info [
+    "The model of the e-puck 2 robot"
+  ]
+  title "e-puck simulation"
+  basicTimeStep 8
+}
+Viewpoint {
+  orientation -0.18051926464332385 0.12212127147289246 0.9759606498965404 1.974531718347751
+  position 0.591793078657706 -2.7807136562352825 1.4889297821046632
+  follow "e-puck2"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  rotation 0 1 0 0
+  floorSize 3 3
+  wallHeight 0.05
+}
+RectangleArena {
+  translation 0 0 0.005
+  rotation 0 1 0 0
+  name "rectangle arena(1)"
+  floorSize 1.5 1.5
+  wallHeight 0.05
+}
+RectangleArena {
+  translation -0.375 1.125 0.005
+  rotation 0 1 0 0
+  name "rectangle arena(2)"
+  floorSize 0.75 0.75
+  wallHeight 0.05
+}
+E-puck {
+  translation -1.125 1.125 0
+  rotation 0 0 1 1.57
+  name "e-puck2"
+  controller "e-puck"
+  version "2"
+  camera_width 160
+  camera_height 120
+}
