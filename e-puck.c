@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 #include <webots/accelerometer.h>
 #include <webots/camera.h>
@@ -33,6 +34,10 @@ typedef struct {
   const char *nom;
   double a, b, c, d;
 } Ensemble;
+
+Ensemble loin = {"loin", 0, 0, 70, 120};
+Ensemble moyen = {"moyen", 100, 120, 180, 300};
+Ensemble proche = {"proche", 200, 400, 5000, 5000};
 
 double fuzzifier(Ensemble e, double mesure) {
   double valeur;
@@ -127,6 +132,17 @@ int main(int argc, char *argv[]) {
     const double *a = wb_accelerometer_get_values(accelerometer);
     printf("accelerometer values = %0.2f %0.2f %0.2f\n", a[0], a[1], a[2]);
 
+    
+    double droite = fmax(sensors_value[1], sensors_value[2]);
+    double gauche = fmax(sensors_value[5], sensors_value[6]);
+
+    
+    printf("droite = %.0f : loin %.2f moyen %.2f proche %.2f\n", droite, fuzzifier(loin, droite), fuzzifier(moyen, droite), fuzzifier(proche, droite));
+    printf("gauche = %.0f : loin %.2f moyen %.2f proche %.2f\n", gauche, fuzzifier(loin, gauche), fuzzifier(moyen, gauche), fuzzifier(proche, gauche));
+
+
+
+    
     /* compute odometry and speed values*/
     compute_odometry(left_position_sensor, right_position_sensor);
     for (i = 0; i < 2; i++) {
